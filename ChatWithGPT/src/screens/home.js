@@ -14,7 +14,7 @@ const Home = () => {
   const handleLogin = async (email, password) => {
     setLoading(true);
     axios
-      .post('http://ADDRESSE_IPV4:1337/api/auth/local', {
+      .post('http://172.29.144.1:1337/api/auth/local', {
         identifier: email,
         password: password,
       })
