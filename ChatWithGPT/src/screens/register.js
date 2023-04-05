@@ -13,7 +13,7 @@ const Register = () => {
   const handleRegister = async (username, email, password) => {
     setLoading(true);
     axios
-      .post('http://ADDRESSE_IPV4:1337/api/auth/local/register', {
+      .post('http://172.29.144.1:1337/api/auth/local/register', {
         username: username,
         email: email,
         password: password,
