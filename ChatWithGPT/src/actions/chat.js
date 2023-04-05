@@ -22,7 +22,7 @@ export const sendMessage = message => async dispatch => {
       {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer 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`,
+          Authorization: `Bearer CLE_API`,
         },
       },
     );
