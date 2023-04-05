@@ -21,6 +21,12 @@ const Register = () => {
       .then(response => {
         setLoading(false);
         if (response && response.data) {
+          showMessage({
+          message: 'Inscription réussie',
+          description: 'Vous pouvez maintenant vous connecter',
+          type: 'success',
+          icon: 'auto'
+        });
           navigation.navigate('Home');
         } else {
           showMessage({
