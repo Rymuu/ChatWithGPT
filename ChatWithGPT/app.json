@@ -1,4 +1,8 @@
 {
   "name": "ChatWithGPT",
-  "displayName": "ChatWithGPT"
+  "displayName": "ChatWithGPT",
+  "react-native-google-mobile-ads": {
+    "android_app_id": "ca-app-pub-8359949298830599~3157922822",
+    "ios_app_id": "ca-app-pub-8359949298830599~3157922822"
+  }
 }
