@@ -6,7 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import { ActivityIndicator } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import FlashMessage, { showMessage } from 'react-native-flash-message';
-
+import notifee from '@notifee/react-native';
 const Home = () => {
   const navigation = useNavigation();
   const [loading, setLoading] = useState(false);
@@ -14,7 +14,7 @@ const Home = () => {
   const handleLogin = async (email, password) => {
     setLoading(true);
     axios
-      .post('http://ADDRESS_IPV4:1337/api/auth/local', {
+      .post('http://ADDRESSE_IPV4:1337/api/auth/local', {
         identifier: email,
         password: password,
       })
@@ -51,6 +51,31 @@ const Home = () => {
         }
       });
   };
+  async function onDisplayNotification() {
+    await notifee.requestPermission()
+
+    const channelId = await notifee.createChannel({
+      id: 'default',
+      name: 'Default Channel',
+    });
+
+    await notifee.displayNotification({
+      title: 'Défis tes amis !',
+      body: 'Tu aime la musique ? Alors tu viens jouer avec tes maintenant !',
+      android: {
+        channelId,
+        smallIcon: 'ic_launcher',
+        pressAction: {
+          id: 'default',
+        },
+      },
+    });
+  }
+
+  notifee.onBackgroundEvent(async ({ type, detail }) => {
+    if (type === 'notification-action-press') {
+    }
+  });
 
   return (
     <Container>
@@ -63,6 +88,9 @@ const Home = () => {
             <RegisterButtonText>Créer un compte</RegisterButtonText>
           </RegisterButton>
           <LoginForm handleLogin={handleLogin} />
+          <NotificationButton onPress={() => onDisplayNotification()}>
+            <NotificationButtonText>Notification</NotificationButtonText>
+          </NotificationButton>
         </>
       )}
     </Container>
@@ -81,6 +109,16 @@ const RegisterButton = styled.TouchableOpacity`
 `;
 
 const RegisterButtonText = styled.Text`
+  color: ${props => props.theme.secondaryColor};
+  font-size: 16px;
+  font-weight: bold;
+`;
+
+const NotificationButton = styled.TouchableOpacity`
+  margin-top: 20px;
+`;
+
+const NotificationButtonText = styled.Text`
   color: ${props => props.theme.secondaryColor};
   font-size: 16px;
   font-weight: bold;

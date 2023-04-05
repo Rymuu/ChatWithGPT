@@ -7,6 +7,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFocusEffect } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
 const Bachelors = () => {
+  const navigation = useNavigation();
   const dispatch = useDispatch();
   const characters = useSelector(state => state.bachelors.characters);
   useEffect(() => {
@@ -32,7 +33,7 @@ const Bachelors = () => {
     <ScrollView>
       <Text>Characters</Text>
       {characters.map(character => (
-        <Text key={character.id}>{character.name}</Text>
+        <Text key={character._id}>{character.name}</Text>
       ))}
     </ScrollView>
   );

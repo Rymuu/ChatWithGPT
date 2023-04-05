@@ -13,7 +13,6 @@ export const getCharacters = () => dispatch => {
     url: 'https://api.disneyapi.dev/characters?page=7&pageSize=25',
   })
     .then(res => {
-      console.log(res.data.data);
       dispatch(displayCharacters(res.data.data));
     })
     .catch(err => err);

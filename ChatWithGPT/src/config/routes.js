@@ -1,26 +1,26 @@
 import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as React from 'react';
 import styled from 'styled-components';
 import Home from '../screens/home';
 import Bachelors from '../screens/bachelors';
 import Chat from '../screens/chat';
 import Register from '../screens/register';
-const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 const Routes = () => {
   return (
     <GlobalSafeArea>
       <NavigationContainer>
-        <Stack.Navigator
+        <Tab.Navigator
           screenOptions={{
             headerShown: false,
           }}>
-          <Stack.Screen name="Chat" component={Chat} />
-          <Stack.Screen name="Home" component={Home} />
-          <Stack.Screen name="Bachelors" component={Bachelors} />
-          <Stack.Screen name="Register" component={Register} />
-        </Stack.Navigator>
+          <Tab.Screen name="Chat" component={Chat} />
+          <Tab.Screen name="Home" component={Home} />
+          <Tab.Screen name="Bachelors" component={Bachelors} />
+          <Tab.Screen name="Register" component={Register} />
+        </Tab.Navigator>
       </NavigationContainer>
     </GlobalSafeArea>
   );
