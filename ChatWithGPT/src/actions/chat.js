@@ -12,7 +12,7 @@ export const sendMessage = message => async dispatch => {
     const response = await axios.post(
       'https://api.openai.com/v1/completions',
       {
-        prompt: `${'Je suis un jeune homme, poli, gentil'}\n\n${message}`,
+        prompt: `\n\n${message}`,
         max_tokens: 64,
         temperature: 0,
         model: 'text-davinci-003',

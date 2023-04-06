@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {Text, ScrollView} from 'react-native';
-
+import BachelorCard from '../components/BachelorCard';
 import {useDispatch, useSelector} from 'react-redux';
 import {getCharacters} from '../actions/bachelors';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -13,6 +13,9 @@ const Bachelors = () => {
   useEffect(() => {
     dispatch(getCharacters());
   }, []);
+  const handlePress = bachelorName => {
+    navigation.navigate('Chat', {bachelorName});
+  };
 
   useFocusEffect(() => {
     //AsyncStorage.removeItem('token');
@@ -33,7 +36,10 @@ const Bachelors = () => {
     <ScrollView>
       <Text>Characters</Text>
       {characters.map(character => (
-        <Text key={character._id}>{character.name}</Text>
+        <BachelorCard
+          name={character.name}
+          onPress={() => handlePress(character.name)}
+        />
       ))}
     </ScrollView>
   );
