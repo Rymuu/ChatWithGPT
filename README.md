@@ -10,20 +10,24 @@ Le groupe est composé de :
 
 # Les fonctionnalités le 6/4 :
 
-- Le chat est mise en place
-- Le système d'authentification
+- Chat avec l'API de ChatGPT
+- Le système d'authentification avec Strapi (login, register)
 - L'expérience utilisateur (retour en cas d'erreur, gestion de non connexion, gestion de temps de chargement)
-- Le système de retour utilisateur
+- Le système de retour utilisateur (les notifications pendant l'authentification)
 - Le système de notification push
-- Le thme sombre/clair
+- Le thème sombre/clair
 - Le système de thème global
 - L'icône de l'app
-- Le partage
+- La publicité
+- Utilisation de l'API spotify
+- Authentification Spotify
+- Jouer des musiques avec TrackPlayer
 
 # Les fonctionnalités le 20/4 :
 
 - Splash screen
 - Les animations
 - Le système multilangue
-- La publicité
+- Le partage
 - L'utilisation des API du téléphone (on ne sait pas encore)
+- Afficher une liste de playlists spotify et lancer un blindtest en fonction de son choix
