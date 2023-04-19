@@ -2,11 +2,12 @@ import React from 'react';
 import {View, Image, Text, TouchableOpacity} from 'react-native';
 import styled from 'styled-components/native';
 
-const BachelorCard = ({onPress, name}) => {
+const BachelorCard = ({onPress, name, image}) => {
   return (
     <TouchableOpacity onPress={onPress}>
       <StyledView>
         <Content>
+          <StyledImage source={{uri: image}} />
           <StyledTitle>{name}</StyledTitle>
         </Content>
       </StyledView>
@@ -23,11 +24,13 @@ const StyledView = styled.View`
 const Content = styled.View`
   padding: 5px 15px;
   gap: 5px;
+  flex-direction: row;
+  align-items: center;
 `;
 const StyledImage = styled.Image`
   background-color: #e6e6e6;
-  width: 250px;
-  height: 250px;
+  width: 50px;
+  height: 50px;
   border-radius: 5px;
 `;
 const StyledText = styled.Text`
@@ -50,7 +53,7 @@ const TypeContainer = styled.View`
 const StyledTitle = styled.Text`
   font-weight: 500;
   font-size: 25px;
-  margin-top: 5px;
+  margin-left: 10px;
   color: black;
 `;
 

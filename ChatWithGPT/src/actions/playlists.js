@@ -3,15 +3,7 @@ import axios from 'axios';
 export const FETCH_PLAYLISTS_REQUEST = 'FETCH_PLAYLISTS_REQUEST';
 export const FETCH_PLAYLISTS_SUCCESS = 'FETCH_PLAYLISTS_SUCCESS';
 export const FETCH_PLAYLISTS_FAILURE = 'FETCH_PLAYLISTS_FAILURE';
-import {getToken} from './user';
-import {useDispatch, useSelector} from 'react-redux';
 
-
-const dispatch = useDispatch();
-
-useEffect(() => {
-  dispatch(getToken());
-}, []);
 export const fetchPlaylistsRequest = () => {
   return {
     type: FETCH_PLAYLISTS_REQUEST,
@@ -32,8 +24,7 @@ export const fetchPlaylistsFailure = error => {
   };
 };
 
-export const fetchPlaylists = () => {
-  const token = useSelector(state => state.user.accessToken);
+export const fetchPlaylists = token => {
   return dispatch => {
     dispatch(fetchPlaylistsRequest());
     axios
@@ -43,8 +34,8 @@ export const fetchPlaylists = () => {
         },
       })
       .then(response => {
-        const playlists = response.data;
-        console.log("Reponse : ",response);
+        const playlists = response.data.playlists.items;
+        console.log('Reponse : ', playlists);
         dispatch(fetchPlaylistsSuccess(playlists));
       })
       .catch(error => {

@@ -7,10 +7,9 @@ import {useDispatch, useSelector} from 'react-redux';
 import {getToken} from '../actions/user';
 import Timer from '../components/Timer';
 
-const BLINDTEST_SIZE = 4; // Nombre de propositions pour le blindtest
-const PLAYLIST_ID = '37i9dQZF1DXbS5WTN5nKF7'; // ID de la playlist Spotify
-
-const BlindTest = () => {
+const BlindTest = props => {
+  const BLINDTEST_SIZE = 4; // Nombre de propositions pour le blindtest
+  const PLAYLIST_ID = props.route.params.playlistId; // ID de la playlist Spotify
   const [songs, setSongs] = useState([]);
   const [correctAnswerIndex, setCorrectAnswerIndex] = useState(null);
   const [playedSongIndex, setPlayedSongIndex] = useState(null);
@@ -54,8 +53,22 @@ const BlindTest = () => {
 
   // Cette fonction asynchrone permet de récupérer les données d'une playlist Spotify
 
+  const fetchRandomSongs = songsWithPreviewUrl => {
+    const answers = [];
+    const usedIndexes = [];
+    while (answers.length < 4) {
+      const index = Math.floor(Math.random() * songsWithPreviewUrl.length);
+      if (!usedIndexes.includes(index)) {
+        usedIndexes.push(index);
+        const song = songsWithPreviewUrl[index].track;
+        answers.push(song);
+      }
+    }
+    return answers;
+  };
+
   const fetchSongs = async () => {
-    if(token){
+    if (token) {
       try {
         const response = await axios.get(
           `https://api.spotify.com/v1/playlists/${PLAYLIST_ID}/tracks?limit=100`,
@@ -69,23 +82,16 @@ const BlindTest = () => {
         const songsWithPreviewUrl = items.filter(
           song => song.track.preview_url !== null,
         );
-  
+
         // On crée un tableau qui contient 4 chansons aléatoires
-  
-        const answers = [];
-        for (let i = 0; i < 4; i++) {
-          const index = Math.floor(Math.random() * songsWithPreviewUrl.length);
-          const song = songsWithPreviewUrl[index].track;
-          answers.push(song);
-        }
-  
+        const answers = fetchRandomSongs(songsWithPreviewUrl);
+
         // On choisit aléatoirement une chanson parmi les 4 pour être la réponse correcte
-  
-        const randomIndex = Math.floor(Math.random() * 4);
+        const randomIndex = Math.floor(Math.random() * answers.length);
         setCorrectAnswerIndex(randomIndex);
         const randomSong = answers[randomIndex];
         setSongs(answers);
-  
+
         console.log('les propositions : ', answers);
         console.log('la bonne réponse : ', correctAnswerIndex);
       } catch (error) {
@@ -96,7 +102,20 @@ const BlindTest = () => {
 
   useEffect(() => {
     fetchSongs();
-  }, [token]);
+    setIsClicked(false);
+    setIsCorrectAnswer(null);
+    setSelectedSongIndex(null);
+  }, [token, PLAYLIST_ID]);
+
+  useEffect(() => {
+    if (isClicked) {
+      setTimeout(() => {
+        setIsClicked(false);
+        setSelectedSongIndex(null);
+        fetchSongs();
+      }, 2000);
+    }
+  }, [isClicked]);
 
   useEffect(() => {
     console.log('taille de songs : ', songs.length);
@@ -108,9 +127,7 @@ const BlindTest = () => {
 
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      {
-      songs.length < BLINDTEST_SIZE ||
-      playedSongIndex === null ? (
+      {songs.length < BLINDTEST_SIZE || playedSongIndex === null ? (
         <Text>Loading...</Text>
       ) : (
         <>
@@ -133,12 +150,12 @@ const BlindTest = () => {
               </SongItem>
             ))}
           </GridContainer>
-          {correctAnswerIndex !== null && (
+          {/* {correctAnswerIndex !== null && (
             <CorrectAnswer isCorrectAnswer={isCorrectAnswer}>
               {songs[correctAnswerIndex].name} -{' '}
               {songs[correctAnswerIndex].artists[0].name}
             </CorrectAnswer>
-          )}
+          )} */}
         </>
       )}
     </View>
