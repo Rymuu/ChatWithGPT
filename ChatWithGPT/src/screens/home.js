@@ -1,15 +1,63 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components/native';
 import LoginForm from '../components/LoginForm/LoginForm';
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
-import { ActivityIndicator } from 'react-native';
+import { ActivityIndicator, Share } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import FlashMessage, { showMessage } from 'react-native-flash-message';
 import notifee from '@notifee/react-native';
+import { PermissionsAndroid } from 'react-native';
 const Home = () => {
   const navigation = useNavigation();
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    requestPermission();
+  }, []);
+
+  const requestPermission = async () => {
+    try {
+      const granted = await PermissionsAndroid.requestMultiple([
+        PermissionsAndroid.PERMISSIONS.CAMERA,
+        PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+        PermissionsAndroid.PERMISSIONS.RECORD_AUDIO,
+      ]);
+      if (
+        granted[PermissionsAndroid.PERMISSIONS.CAMERA] ===
+        PermissionsAndroid.RESULTS.GRANTED &&
+        granted[PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE] ===
+        PermissionsAndroid.RESULTS.GRANTED &&
+        granted[PermissionsAndroid.PERMISSIONS.RECORD_AUDIO] ===
+        PermissionsAndroid.RESULTS.GRANTED
+      ) {
+        console.log('You can use the camera, gallery, and microphone');
+      } else {
+        console.log('Camera, gallery, or microphone permission denied');
+      }
+    } catch (err) {
+      console.warn(err);
+    }
+  };
+
+  const handleSharePress = async () => {
+    try {
+      const result = await Share.share({
+        message: 'Check out this ChatWithGtp: https://example.com',
+      });
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          console.log('Shared with activity type:', result.activityType);
+        } else {
+          console.log('Shared');
+        }
+      } else if (result.action === Share.dismissedAction) {
+        console.log('Dismissed');
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   const handleLogin = async (email, password) => {
     setLoading(true);
@@ -88,6 +136,10 @@ const Home = () => {
             <RegisterButtonText>Créer un compte</RegisterButtonText>
           </RegisterButton>
           <LoginForm handleLogin={handleLogin} />
+          <ShareButton onPress={handleSharePress}>
+            <ShareIcon source={require('../icones/share.png')} />
+            <ShareButtonText>Share</ShareButtonText>
+          </ShareButton>
           <NotificationButton onPress={() => onDisplayNotification()}>
             <NotificationButtonText>Notification</NotificationButtonText>
           </NotificationButton>
@@ -124,4 +176,24 @@ const NotificationButtonText = styled.Text`
   font-weight: bold;
 `;
 
+const ShareButton = styled.TouchableOpacity`
+  background-color:  ${props => props.theme.secondaryColor};
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 20px;
+  align-items: center;
+  flex-direction: row;
+`;
+
+const ShareButtonText = styled.Text`
+  color: #FFFFFF;
+  font-size: 16px;
+  font-weight: bold;
+`;
+
+const ShareIcon = styled.Image`
+  width: 25px;
+  height: 25px;
+  tint-color: #FFFFFF;
+`;
 export default Home;
