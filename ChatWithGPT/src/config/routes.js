@@ -11,6 +11,7 @@ import PlaylistIcon from '../icones/playlist.png';
 import ChatIcon from '../icones/chat.png';
 import SpotifyLogin from '../screens/spotifyLogin';
 import BlindTest from '../screens/blindtest';
+import Playlists from '../screens/playlists';
 import CreateAccountIcon from '../icones/create-account.png';
 
 const Tab = createBottomTabNavigator();
@@ -72,6 +73,7 @@ const Routes = () => {
           />
           <Tab.Screen name="SpotifyLogin" component={SpotifyLogin} />
           <Tab.Screen name="BlindTest" component={BlindTest} />
+          <Tab.Screen name="Playlists" component={Playlists} />
         </Tab.Navigator>
       </NavigationContainer>
     </GlobalSafeArea>
