@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {Text, ScrollView} from 'react-native';
-import BachelorCard from '../components/BachelorCard';
+import ListCard from '../components/ListCard';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchPlaylists} from '../actions/playlists';
 import {getToken} from '../actions/user';
@@ -33,7 +33,7 @@ const Playlists = () => {
       <Text onPress={() => handleClick()}>playlists</Text>
       {playlists &&
         playlists.map(playlist => (
-          <BachelorCard
+          <ListCard
             name={playlist.name}
             onPress={() => handlePress(playlist.id)}
             image={playlist.images[0].url}

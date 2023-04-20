@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Image, Text, TouchableOpacity} from 'react-native';
 import styled from 'styled-components/native';
 
-const BachelorCard = ({onPress, name, image}) => {
+const ListCard = ({onPress, name, image}) => {
   return (
     <TouchableOpacity onPress={onPress}>
       <StyledView>
@@ -57,4 +57,4 @@ const StyledTitle = styled.Text`
   color: black;
 `;
 
-export default BachelorCard;
+export default ListCard;

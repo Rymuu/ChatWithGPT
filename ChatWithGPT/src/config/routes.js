@@ -1,9 +1,8 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {NavigationContainer} from '@react-navigation/native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import * as React from 'react';
 import styled from 'styled-components';
 import Home from '../screens/home';
-import Bachelors from '../screens/bachelors';
 import Chat from '../screens/chat';
 import Register from '../screens/register';
 import HomeIcon from '../icones/home.png';
@@ -28,10 +27,10 @@ const Routes = () => {
             name="Chat"
             component={Chat}
             options={{
-              tabBarIcon: ({ focused, color }) => (
+              tabBarIcon: ({focused, color}) => (
                 <Image
                   source={focused ? ChatIcon : ChatIcon}
-                  style={{ width: 25, height: 25, tintColor: color }}
+                  style={{width: 25, height: 25, tintColor: color}}
                 />
               ),
             }}
@@ -40,21 +39,22 @@ const Routes = () => {
             name="Home"
             component={Home}
             options={{
-              tabBarIcon: ({ focused, color }) => (
+              tabBarIcon: ({focused, color}) => (
                 <Image
                   source={focused ? HomeIcon : HomeIcon}
-                  style={{ width: 25, height: 25, tintColor: color }}
+                  style={{width: 25, height: 25, tintColor: color}}
                 />
               ),
-            }} />
+            }}
+          />
           <Tab.Screen
-            name="Bachelors"
-            component={Bachelors}
+            name="Playlists"
+            component={Playlists}
             options={{
-              tabBarIcon: ({ focused, color }) => (
+              tabBarIcon: ({focused, color}) => (
                 <Image
                   source={focused ? PlaylistIcon : PlaylistIcon}
-                  style={{ width: 25, height: 25, tintColor: color }}
+                  style={{width: 25, height: 25, tintColor: color}}
                 />
               ),
             }}
@@ -63,17 +63,16 @@ const Routes = () => {
             name="Register"
             component={Register}
             options={{
-              tabBarIcon: ({ focused, color, size }) => (
+              tabBarIcon: ({focused, color, size}) => (
                 <Image
                   source={focused ? CreateAccountIcon : CreateAccountIcon}
-                  style={{ width: 25, height: 25, tintColor: color }}
+                  style={{width: 25, height: 25, tintColor: color}}
                 />
               ),
             }}
           />
           <Tab.Screen name="SpotifyLogin" component={SpotifyLogin} />
           <Tab.Screen name="BlindTest" component={BlindTest} />
-          <Tab.Screen name="Playlists" component={Playlists} />
         </Tab.Navigator>
       </NavigationContainer>
     </GlobalSafeArea>
@@ -85,7 +84,6 @@ const GlobalSafeArea = styled.SafeAreaView`
   background-color: ${props => props.theme.primaryColor};
 `;
 
-const Image = styled.Image`
-`
+const Image = styled.Image``;
 
 export default Routes;
