@@ -1,38 +1,38 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/native';
-
+import { useTranslation } from 'react-i18next';
 const RegisterForm = ({ handleRegister }) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const {t} = useTranslation();
   const handlePress = () => {
     handleRegister(username, email, password);
   };
 
   return (
     <Container>
-      <Title>Inscription</Title>
+      <Title>{t('titleInscription')}</Title>
       <TextInput
-        placeholder="Nom d'utilisateur"
+        placeholder={t('username')}
         value={username}
         onChangeText={setUsername}
         autoCapitalize="none"
       />
       <TextInput
-        placeholder="Email"
+        placeholder={t('email')}
         value={email}
         onChangeText={setEmail}
         autoCapitalize="none"
       />
       <TextInput
-        placeholder="Mot de passe"
+        placeholder={t('password')}
         value={password}
         onChangeText={setPassword}
         secureTextEntry
       />
       <Button onPress={handlePress}>
-        <ButtonText>S'inscrire</ButtonText>
+        <ButtonText>{t('buttonRegister')}</ButtonText>
       </Button>
     </Container>
   );

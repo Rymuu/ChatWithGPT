@@ -12,7 +12,7 @@ import SpotifyLogin from '../screens/spotifyLogin';
 import BlindTest from '../screens/blindtest';
 import Playlists from '../screens/playlists';
 import CreateAccountIcon from '../icones/create-account.png';
-
+import Setting from '../screens/setting';
 const Tab = createBottomTabNavigator();
 
 const Routes = () => {
@@ -36,24 +36,24 @@ const Routes = () => {
             }}
           />
           <Tab.Screen
-            name="Home"
-            component={Home}
-            options={{
-              tabBarIcon: ({focused, color}) => (
-                <Image
-                  source={focused ? HomeIcon : HomeIcon}
-                  style={{width: 25, height: 25, tintColor: color}}
-                />
-              ),
-            }}
-          />
-          <Tab.Screen
             name="Playlists"
             component={Playlists}
             options={{
               tabBarIcon: ({focused, color}) => (
                 <Image
                   source={focused ? PlaylistIcon : PlaylistIcon}
+                  style={{width: 25, height: 25, tintColor: color}}
+                />
+              ),
+            }}
+          />
+          <Tab.Screen
+            name="Home"
+            component={Home}
+            options={{
+              tabBarIcon: ({focused, color}) => (
+                <Image
+                  source={focused ? HomeIcon : HomeIcon}
                   style={{width: 25, height: 25, tintColor: color}}
                 />
               ),
@@ -73,6 +73,7 @@ const Routes = () => {
           />
           <Tab.Screen name="SpotifyLogin" component={SpotifyLogin} />
           <Tab.Screen name="BlindTest" component={BlindTest} />
+          <Tab.Screen name="Setting" component={Setting} />
         </Tab.Navigator>
       </NavigationContainer>
     </GlobalSafeArea>
