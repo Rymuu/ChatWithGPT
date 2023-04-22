@@ -13,11 +13,11 @@ Le groupe est composé de :
 - Chat avec l'API de ChatGPT 
   - ![qemu-system-x86_64_ISiulCROg3](https://user-images.githubusercontent.com/56402276/233753016-dccec13c-4c75-4d19-80b9-0113c4c5158c.gif)
 - Le système d'authentification avec Strapi (login, register)
-  - ![qemu-system-x86_64_JIJ7ERNfdT](https://user-images.githubusercontent.com/56402276/233752203-b9d64bae-5cad-43f0-baa3-7be285d9200c.gif)
+  - ![qemu-system-x86_64_BxrQZf8mcv](https://user-images.githubusercontent.com/56402276/233780009-eca0de37-0f7d-4ef9-952f-f43cb425ae5c.gif)
 - L'expérience utilisateur (retour en cas d'erreur, gestion de non connexion, gestion de temps de chargement)
   - ![qemu-system-x86_64_TbMCWcVmm8](https://user-images.githubusercontent.com/56402276/233752225-f8114de7-7b56-4ddd-9cb7-938d4db609b3.gif)
 - Le système de retour utilisateur (les notifications pendant l'authentification)
-  - ![qemu-system-x86_64_t4gBilANvj](https://user-images.githubusercontent.com/56402276/233752190-8d40d001-1e5f-45bf-ad86-4d5343b89d22.gif)
+  - ![qemu-system-x86_64_oHWUsfuv1i](https://user-images.githubusercontent.com/56402276/233780021-664053e5-2586-4c73-b81e-e7d6636e9a3f.gif)
 - Le système de notification push
   - ![qemu-system-x86_64_4Ai6DCPokF](https://user-images.githubusercontent.com/56402276/233752146-474c0c80-d07d-4e83-9fc9-db6ea436709a.gif)
 - Le thème sombre/clair
