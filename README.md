@@ -11,7 +11,7 @@ Le groupe est composé de :
 # Les fonctionnalités le 6/4 :
 
 - Chat avec l'API de ChatGPT 
-  - ![gSGxc5SdmX](https://user-images.githubusercontent.com/56402276/233751957-8ffe2b15-0e9f-4012-b892-10ce292005bc.gif)
+  - ![qemu-system-x86_64_ISiulCROg3](https://user-images.githubusercontent.com/56402276/233753016-dccec13c-4c75-4d19-80b9-0113c4c5158c.gif)
 - Le système d'authentification avec Strapi (login, register)
   - ![qemu-system-x86_64_JIJ7ERNfdT](https://user-images.githubusercontent.com/56402276/233752203-b9d64bae-5cad-43f0-baa3-7be285d9200c.gif)
 - L'expérience utilisateur (retour en cas d'erreur, gestion de non connexion, gestion de temps de chargement)
