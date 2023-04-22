@@ -10,7 +10,8 @@ Le groupe est composé de :
 
 # Les fonctionnalités le 6/4 :
 
-- Chat avec l'API de ChatGPT
+- Chat avec l'API de ChatGPT 
+https://i.imgur.com/1HqnDIZ.gif
 - Le système d'authentification avec Strapi (login, register)
 - L'expérience utilisateur (retour en cas d'erreur, gestion de non connexion, gestion de temps de chargement)
 - Le système de retour utilisateur (les notifications pendant l'authentification)
