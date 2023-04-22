@@ -8,7 +8,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import FlashMessage, { showMessage } from 'react-native-flash-message';
 import notifee from '@notifee/react-native';
 import { PermissionsAndroid } from 'react-native';
+import { useTranslation } from 'react-i18next';
 const Home = () => {
+  const {t} = useTranslation();
   const navigation = useNavigation();
   const [loading, setLoading] = useState(false);
 
@@ -62,7 +64,7 @@ const Home = () => {
   const handleLogin = async (email, password) => {
     setLoading(true);
     axios
-      .post('http://ADDRESSE_IPV4:1337/api/auth/local', {
+      .post('http://ADRESSE_IPV4:1337/api/auth/local', {
         identifier: email,
         password: password,
       })
@@ -133,7 +135,7 @@ const Home = () => {
       ) : (
         <>
           <RegisterButton onPress={() => navigation.navigate('Register')}>
-            <RegisterButtonText>Créer un compte</RegisterButtonText>
+            <RegisterButtonText>{t('buttonRegister')}</RegisterButtonText>
           </RegisterButton>
           <LoginForm handleLogin={handleLogin} />
           <ShareButton onPress={handleSharePress}>
@@ -141,7 +143,7 @@ const Home = () => {
             <ShareButtonText>Share</ShareButtonText>
           </ShareButton>
           <NotificationButton onPress={() => onDisplayNotification()}>
-            <NotificationButtonText>Notification</NotificationButtonText>
+            <NotificationButtonText>{t('notification')}</NotificationButtonText>
           </NotificationButton>
         </>
       )}

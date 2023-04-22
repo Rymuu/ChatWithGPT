@@ -6,18 +6,12 @@ export const addMessage = message => ({
 });
 
 export const sendMessage = message => async dispatch => {
-  console.log('message', message);
   try {
-    console.log('message', message);
     const response = await axios.post(
-      'https://api.openai.com/v1/completions',
+      'https://api.openai.com/v1/chat/completions',
       {
-        prompt: `\n\n${message}`,
-        max_tokens: 64,
-        temperature: 0,
-        model: 'text-davinci-003',
-        frequency_penalty: 0.5,
-        presence_penalty: 0.5,
+        model: 'gpt-3.5-turbo',
+        messages: [{role: 'user', content: `Réponds de manère concise. ${message}`}],
       },
       {
         headers: {
@@ -26,16 +20,11 @@ export const sendMessage = message => async dispatch => {
         },
       },
     );
-    console.log('response:', response);
     dispatch(addMessage({user: 'user', message}));
-    console.log(
-      'response.data.choices[0].text.trim():',
-      response.data.choices[0].text.trim(),
-    );
+
     dispatch(
-      addMessage({user: 'bot', message: response.data.choices[0].text.trim()}),
+      addMessage({user: 'bot', message: response.data.choices[0].message.content.trim()}),
     );
   } catch (error) {
-    console.log(error);
   }
 };

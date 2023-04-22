@@ -5,15 +5,15 @@ import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
 import { ActivityIndicator } from 'react-native';
 import FlashMessage, { showMessage } from 'react-native-flash-message';
-
+import { useTranslation } from 'react-i18next';
 const Register = () => {
   const navigation = useNavigation();
   const [loading, setLoading] = useState(false);
-
+  const {t} = useTranslation();
   const handleRegister = async (username, email, password) => {
     setLoading(true);
     axios
-      .post('http://ADDRESSE_IPV4:1337/api/auth/local/register', {
+      .post('http://ADRESSE_IPV4:1337/api/auth/local/register', {
         username: username,
         email: email,
         password: password,
@@ -66,7 +66,7 @@ const Register = () => {
       ) : (
         <>
           <RegisterButton onPress={() => navigation.navigate('Home')}>
-            <RegisterButtonText>Login</RegisterButtonText>
+            <RegisterButtonText>{t('buttonLogin')}</RegisterButtonText>
           </RegisterButton>
           <RegisterForm handleRegister={handleRegister} />
         </>

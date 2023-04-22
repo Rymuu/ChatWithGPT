@@ -1,31 +1,31 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/native';
-
+import { useTranslation } from 'react-i18next';
 const LoginForm = ({ handleLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const {t} = useTranslation();
   const handlePress = () => {
     handleLogin(email, password);
   };
 
   return (
     <Container>
-      <Title>Connexion</Title>
+      <Title>{t('titleConnexion')}</Title>
       <TextInput
-        placeholder="Email"
+        placeholder={t('email')}
         value={email}
         onChangeText={setEmail}
         autoCapitalize="none"
       />
       <TextInput
-        placeholder="Mot de passe"
+        placeholder={t('password')}
         value={password}
         onChangeText={setPassword}
         secureTextEntry
       />
       <Button onPress={handlePress}>
-        <ButtonText>Se connecter</ButtonText>
+        <ButtonText>{t('buttonLogin')}</ButtonText>
       </Button>
     </Container>
   );

@@ -5,15 +5,14 @@ import {sendMessage} from '../actions/chat';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFocusEffect } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
-import Home from '../screens/home';
+import { useTranslation } from 'react-i18next';
 const Chat = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const messages = useSelector(state => state.chat.messages);
   const [inputValue, setInputValue] = useState('');
-
+  const {t} = useTranslation();
   useFocusEffect(() => {
-    //AsyncStorage.removeItem('token');
     AsyncStorage.getItem('token')
       .then(token => {
         if (!token) {
@@ -21,7 +20,6 @@ const Chat = () => {
         }
       })
       .catch(err => {
-        console.log(err);
       });
   });
   const handleInputChange = value => {
@@ -44,12 +42,12 @@ const Chat = () => {
       </MessagesContainer>
       <InputContainer>
         <Input
-          placeholder="Type a message..."
+          placeholder={t('placeholderChat')}
           value={inputValue}
           onChangeText={handleInputChange}
         />
         <SendButton onPress={handleSendMessage}>
-          <SendButtonText>Send</SendButtonText>
+          <SendButtonText>{t('buttonSendChat')}</SendButtonText>
         </SendButton>
       </InputContainer>
     </Container>
