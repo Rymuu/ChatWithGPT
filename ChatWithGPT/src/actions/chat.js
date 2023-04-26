@@ -16,7 +16,7 @@ export const sendMessage = message => async dispatch => {
       {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer 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`,
+          Authorization: `Bearer CLE_API`,
         },
       },
     );

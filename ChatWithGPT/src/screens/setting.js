@@ -14,16 +14,7 @@ const Setting = () => {
   const [loading, setLoading] = useState(false);
   const navigation = useNavigation();
 
-  useFocusEffect(() => {
-    AsyncStorage.getItem('token')
-      .then(token => {
-        if (!token) {
-          navigation.navigate('Home');
-        }
-      })
-      .catch(err => {
-      });
-  });
+
   const changeLanguage = (language) => {
     i18n.changeLanguage(language);
   };
