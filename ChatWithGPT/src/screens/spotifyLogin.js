@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Button, View, Text, Linking} from 'react-native';
-import {WebView} from 'react-native-webview';
+import {Button, Linking} from 'react-native';
 import axios from 'axios';
 import base64 from 'react-native-base64';
 import {saveUser, saveToken} from '../actions/user';
@@ -30,10 +29,8 @@ const UserInfo = styled.Text`
 
 const SpotifyLogin = () => {
   const [accessToken, setAccessToken] = useState(null);
-  const [webViewVisible, setWebViewVisible] = useState(false);
   const dispatch = useDispatch();
   const {user} = useSelector(state => state.user);
-  const token = useSelector(state => state.user.accessToken);
 
   useEffect(() => {
     const handleOpenURL = async event => {
@@ -80,7 +77,6 @@ const SpotifyLogin = () => {
           dispatch(saveUser(userResponse.data));
         })
         .catch(error => {
-          console.error(error);
         });
     }
   }, [accessToken]);

@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Routes from './src/config/routes';
 import {Provider} from 'react-redux';
 import {store} from './src/config/store';

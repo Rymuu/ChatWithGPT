@@ -35,7 +35,6 @@ export const fetchPlaylists = token => {
       })
       .then(response => {
         const playlists = response.data.playlists.items;
-        console.log('Reponse : ', playlists);
         dispatch(fetchPlaylistsSuccess(playlists));
       })
       .catch(error => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Image, Text, TouchableOpacity} from 'react-native';
+import {TouchableOpacity} from 'react-native';
 import styled from 'styled-components/native';
 
 const ListCard = ({onPress, name, image}) => {
@@ -32,22 +32,6 @@ const StyledImage = styled.Image`
   width: 50px;
   height: 50px;
   border-radius: 5px;
-`;
-const StyledText = styled.Text`
-  font-weight: 700;
-  font-size: 16px;
-  color: grey;
-`;
-const StyledType = styled.Text`
-  font-size: 15px;
-  color: white;
-`;
-
-const TypeContainer = styled.View`
-  align-self: flex-start;
-  padding: 0px 20px;
-  border-radius: 3px;
-  background-color: ${props => props.backgroundColor};
 `;
 
 const StyledTitle = styled.Text`

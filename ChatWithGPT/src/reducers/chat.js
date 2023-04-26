@@ -1,4 +1,3 @@
-// reducers/chat.js
 import {ADD_MESSAGE} from '../actions/chat';
 
 const initialState = {

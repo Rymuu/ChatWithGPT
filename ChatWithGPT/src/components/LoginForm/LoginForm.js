@@ -17,23 +17,11 @@ const LoginForm = ({ handleLogin }) => {
 
   const requestPermission = async () => {
     try {
-      const granted = await PermissionsAndroid.requestMultiple([
+      await PermissionsAndroid.requestMultiple([
         PermissionsAndroid.PERMISSIONS.CAMERA,
         PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
         PermissionsAndroid.PERMISSIONS.RECORD_AUDIO,
       ]);
-      if (
-        granted[PermissionsAndroid.PERMISSIONS.CAMERA] ===
-        PermissionsAndroid.RESULTS.GRANTED &&
-        granted[PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE] ===
-        PermissionsAndroid.RESULTS.GRANTED &&
-        granted[PermissionsAndroid.PERMISSIONS.RECORD_AUDIO] ===
-        PermissionsAndroid.RESULTS.GRANTED
-      ) {
-        console.log('You can use the camera, gallery, and microphone');
-      } else {
-        console.log('Camera, gallery, or microphone permission denied');
-      }
     } catch (err) {
       console.warn(err);
     }
@@ -41,20 +29,10 @@ const LoginForm = ({ handleLogin }) => {
 
   const handleSharePress = async () => {
     try {
-      const result = await Share.share({
+      await Share.share({
         message: 'Check out this ChatWithGtp: https://example.com',
       });
-      if (result.action === Share.sharedAction) {
-        if (result.activityType) {
-          console.log('Shared with activity type:', result.activityType);
-        } else {
-          console.log('Shared');
-        }
-      } else if (result.action === Share.dismissedAction) {
-        console.log('Dismissed');
-      }
     } catch (error) {
-      console.log(error.message);
     }
   };
   async function onDisplayNotification() {

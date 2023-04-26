@@ -1,5 +1,3 @@
-import {SAVE_USER, SAVE_TOKEN} from '../actions/user';
-
 const initialState = {
   accessToken: null,
   user: {},

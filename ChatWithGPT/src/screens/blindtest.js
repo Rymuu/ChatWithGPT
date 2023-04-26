@@ -1,11 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
 import TrackPlayer from 'react-native-track-player';
 import axios from 'axios';
 import styled from 'styled-components/native';
 import {useDispatch, useSelector} from 'react-redux';
 import {getToken} from '../actions/user';
-import Timer from '../components/Timer';
 
 const BlindTest = props => {
   const BLINDTEST_SIZE = 4; // Nombre de propositions pour le blindtest
@@ -26,18 +24,6 @@ const BlindTest = props => {
     dispatch(getToken());
   }, []);
 
-  const handleAnswerSelection = index => {
-    setSelectedAnswerIndex(index);
-    setIsCorrectAnswer(index === correctAnswerIndex);
-  };
-
-  const handleItemClick = index => {
-    if (index === correctAnswerIndex) {
-      setIsCorrectAnswer(true);
-    } else {
-      setIsCorrectAnswer(false);
-    }
-  };
   const handlePlay = async songIndex => {
     console.log(songs[songIndex]);
     if (songs[songIndex]) {
@@ -89,13 +75,8 @@ const BlindTest = props => {
         // On choisit aléatoirement une chanson parmi les 4 pour être la réponse correcte
         const randomIndex = Math.floor(Math.random() * answers.length);
         setCorrectAnswerIndex(randomIndex);
-        const randomSong = answers[randomIndex];
         setSongs(answers);
-
-        console.log('les propositions : ', answers);
-        console.log('la bonne réponse : ', correctAnswerIndex);
       } catch (error) {
-        console.error(error);
       }
     }
   };
@@ -118,17 +99,15 @@ const BlindTest = props => {
   }, [isClicked]);
 
   useEffect(() => {
-    console.log('taille de songs : ', songs.length);
     if (songs.length >= BLINDTEST_SIZE) {
-      console.log('je suis en blindtest');
       handlePlay(correctAnswerIndex); // Jouer la première chanson de la liste
     }
   }, [songs]);
 
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+    <Container>
       {songs.length < BLINDTEST_SIZE || playedSongIndex === null ? (
-        <Text>Loading...</Text>
+        <Loading>Loading...</Loading>
       ) : (
         <>
           <GridContainer>
@@ -140,7 +119,6 @@ const BlindTest = props => {
                   setSelectedSongIndex(index);
                   setIsCorrectAnswer(index === correctAnswerIndex);
                   setIsClicked(true);
-                  console.log('clicked', isClicked);
                 }}
                 isCorrectAnswer={index === correctAnswerIndex}
                 isSelected={index === selectedSongIndex}
@@ -150,17 +128,21 @@ const BlindTest = props => {
               </SongItem>
             ))}
           </GridContainer>
-          {/* {correctAnswerIndex !== null && (
-            <CorrectAnswer isCorrectAnswer={isCorrectAnswer}>
-              {songs[correctAnswerIndex].name} -{' '}
-              {songs[correctAnswerIndex].artists[0].name}
-            </CorrectAnswer>
-          )} */}
         </>
       )}
-    </View>
+    </Container>
   );
 };
+
+const Container = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  background-color: ${props => props.theme.primaryColor};
+`; 
+
+const Loading = styled.Text`
+`; 
 
 const GridContainer = styled.View`
   flex-direction: row;
@@ -190,12 +172,4 @@ const SongName = styled.Text`
 const ArtistName = styled.Text`
   font-size: 16px;
 `;
-
-const CorrectAnswer = styled.Text`
-  font-weight: bold;
-  font-size: 20px;
-  margin-top: 20px;
-  color: ${({isCorrectAnswer}) => (isCorrectAnswer ? '#4CAF50' : '#E91E63')};
-`;
-
 export default BlindTest;

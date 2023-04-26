@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Text, ScrollView} from 'react-native';
+import {ScrollView} from 'react-native';
 import ListCard from '../components/ListCard';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchPlaylists} from '../actions/playlists';
@@ -15,25 +15,21 @@ const Playlists = () => {
   const handlePress = playlistId => {
     navigation.navigate('BlindTest', {playlistId});
   };
-  const handleClick = () => {
-    console.log(playlists);
-  };
   useEffect(() => {
     dispatch(getToken());
   }, []);
   useEffect(() => {
     if (token) {
       dispatch(fetchPlaylists(token));
-      console.log('les playlists : ', playlists);
     }
   }, [token]);
 
   return (
     <ScrollView>
-      <Text onPress={() => handleClick()}>playlists</Text>
       {playlists &&
         playlists.map(playlist => (
           <ListCard
+            key={playlist.id}
             name={playlist.name}
             onPress={() => handlePress(playlist.id)}
             image={playlist.images[0].url}
