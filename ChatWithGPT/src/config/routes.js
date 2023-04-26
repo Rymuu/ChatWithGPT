@@ -27,10 +27,9 @@ const Routes = () => {
             name="Chat"
             component={Chat}
             options={{
-              tabBarIcon: ({focused, color}) => (
+              tabBarIcon: ({focused}) => (
                 <Image
                   source={focused ? ChatIcon : ChatIcon}
-                  style={{width: 25, height: 25, tintColor: color}}
                 />
               ),
             }}
@@ -39,10 +38,9 @@ const Routes = () => {
             name="Playlists"
             component={Playlists}
             options={{
-              tabBarIcon: ({focused, color}) => (
+              tabBarIcon: ({focused}) => (
                 <Image
                   source={focused ? PlaylistIcon : PlaylistIcon}
-                  style={{width: 25, height: 25, tintColor: color}}
                 />
               ),
             }}
@@ -51,10 +49,9 @@ const Routes = () => {
             name="Home"
             component={Home}
             options={{
-              tabBarIcon: ({focused, color}) => (
+              tabBarIcon: ({focused}) => (
                 <Image
                   source={focused ? HomeIcon : HomeIcon}
-                  style={{width: 25, height: 25, tintColor: color}}
                 />
               ),
             }}
@@ -63,10 +60,9 @@ const Routes = () => {
             name="Register"
             component={Register}
             options={{
-              tabBarIcon: ({focused, color, size}) => (
+              tabBarIcon: ({focused}) => (
                 <Image
                   source={focused ? CreateAccountIcon : CreateAccountIcon}
-                  style={{width: 25, height: 25, tintColor: color}}
                 />
               ),
             }}
@@ -84,7 +80,9 @@ const GlobalSafeArea = styled.SafeAreaView`
   flex: 1;
   background-color: ${props => props.theme.primaryColor};
 `;
-
-const Image = styled.Image``;
+const Image = styled.Image`
+  width: 25px;
+  height: 25px;
+`;
 
 export default Routes;
