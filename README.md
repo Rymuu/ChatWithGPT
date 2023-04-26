@@ -43,4 +43,5 @@ Le groupe est composé de :
 - L'utilisation des API du téléphone (on ne sait pas encore)
   - ![qemu-system-x86_64_tcqSH41JA7](https://user-images.githubusercontent.com/56402276/233752257-cd1207cd-16ed-4887-ac43-1f3ad8560268.gif)
 - Afficher une liste de playlists spotify et lancer un blindtest en fonction de son choix
-  - ![qemu-system-x86_64_98KgiRuzMQ](https://user-images.githubusercontent.com/56402276/234556260-df16f158-aa97-4756-808c-1ee010f06c6c.gif)
+  - ![qemu-system-x86_64_HocmLKQRV9](https://user-images.githubusercontent.com/56402276/234577083-4a1391f9-24f4-4372-a039-90c55fdbdd42.gif)
+
